@@ -257,6 +257,9 @@ class Conf {
     const BLIND_ALWAYS = 2;
     const BLIND_UNTILREVIEW = 3;
 
+    const PC_HIDECONFLICTED_NO = 0;
+    const PC_HIDECONFLICTED_YES = 1;
+
     const SEEDEC_REV = 1;
     const SEEDEC_NCREV = 3;
 
@@ -400,6 +403,7 @@ class Conf {
         $this->settings["pcrev_any"] = $this->settings["pcrev_any"] ?? 0;
         $this->settings["sub_blind"] = $this->settings["sub_blind"] ?? self::BLIND_ALWAYS;
         $this->settings["rev_blind"] = $this->settings["rev_blind"] ?? self::BLIND_ALWAYS;
+        $this->settings["pc_hideconflicted"] = $this->settings["pc_hideconflicted"] ?? self::PC_HIDECONFLICTED_NO;
 
         // rounds
         $this->refresh_round_settings();
