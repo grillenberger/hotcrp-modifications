@@ -168,7 +168,7 @@ class PaperTable {
         $format = 0;
 
         $paperConflicted = false;
-        if (!$paperTable->user->privChair && $prow->has_conflict($paperTable->user)) {
+        if (!$paperTable->user->privChair && $prow->has_conflict($paperTable->user) && !$prow->has_author($paperTable->user)) {
             $paperConflicted = true;
         }
 
