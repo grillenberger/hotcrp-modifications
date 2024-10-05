@@ -132,6 +132,12 @@ h1 {
     padding-left: .85em!important;
 }
 
+.signingrp h1 {
+    background: none;
+    border: none;
+    padding-left: 0!important;
+}
+
 nav.submission-modes {
     padding: .5em 0 1em 0;
 }
