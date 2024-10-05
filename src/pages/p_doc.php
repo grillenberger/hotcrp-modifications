@@ -88,7 +88,7 @@ class Doc_Page {
         }
         $prow = $dr->prow;
 
-        if(!$user->privChair && $prow->conf->settings["pc_hideconflicted"] == 1 && $prow->has_conflict($user)) {
+        if(!$user->privChair && $prow->conf->settings["pc_hideconflicted"] == 1 && $prow->has_conflict($user) && !$row->has_author($pl->user)) {
             self::error("403 Forbidden", MessageItem::error("<5>Access denied to conflicting submission."), $qreq);
         }
 
