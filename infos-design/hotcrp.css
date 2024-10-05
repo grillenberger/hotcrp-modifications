@@ -1,0 +1,438 @@
+:root {
+    --default-fontsize: 14px;
+    --color-gi-yellow-light: #f9f9c9;
+}
+
+body {
+    --brand-fg: var(--color-gi-blue);
+    --brand-bg-dark: var(--color-grey);
+    --brand-decor: var(--color-gi-yellow);
+    --brand-decor-light: var(--color-gi-yellow);
+    --headline-decor: var(--color-gi-blue);
+    --headline-fg: var(--color-gi-blue);
+}
+
+h2.home {
+    color: var(--color-gi-blue);
+}
+
+.msg.msg-warning {
+    background: none;
+    background-color: var(--color-gi-yellow);
+}
+
+body {
+    background: none !important;
+}
+
+#h-site, #h-right {
+    background: var(--color-grey);
+    border: none;
+    padding: .5em 1em;
+    margin-top: 1em;
+
+    .header-site-name {
+        font-weight: 500;
+    }
+}
+
+#h-right {
+    position: relative;
+    top: -4.6em;
+    margin-bottom: -4.6em;
+    margin-right: -1em;
+    background: none;
+
+    button {
+        background: none !important;
+        border: none !important;
+        padding: .25em calc(.5 * var(--default-padding) * 1.1) !important;
+        color: var(--color-gi-blue) !important;
+        font-size: 15px;
+        font-weight: 600;
+
+        &:hover {
+            background: var(--color-grey-dark) !important;
+            color: var(--color-light) !important;
+
+            svg path {
+                stroke: var(--color-light);
+            }
+        }
+    }
+}
+
+div.leftmenu-left {
+    background: var(--color-grey-light);
+    margin: -1em;
+    padding: 1em;
+    margin-left: 0;
+}
+
+div.pspcard {
+    background: none;
+}
+
+div.pcard-left {
+    background: var(--color-grey-light);
+}
+
+.notecard.override-conflict,
+.notecard.override-conflict.on {
+    background: var(--color-grey-dark);
+    color: var(--color-light);
+
+    a {
+        color: var(--color-light);
+    }
+}
+
+.pslcard-home {
+    a { display: none; }
+}
+
+a:hover {
+    color: var(--color-gi-blue-light);
+    .t-editor { color: var(--color-gi-blue-light); }
+}
+
+#p-header {
+    padding-bottom: calc(4 * var(--default-padding))!important;
+    background-image: url("https://www.infos2025.ch/assets/img/Panorama.svg")!important;
+    background-color: var(--color-gi-blue)!important;
+    color: var(--color-light)!important;
+    padding: var(--default-padding)!important;
+    background-repeat: no-repeat!important;
+    background-position: 0 bottom!important;
+    background-size: auto 85%!important;
+    position: relative!important;
+
+    .title-box {
+        margin-bottom: 2em;
+    }
+}
+
+#h-page.header-page-submission {
+    border: none;
+}
+
+#h-page {
+    padding-left: 0;
+}
+
+#h-page {
+    width: 100%;
+}
+
+h1 {
+    color: var(--color-gi-blue);
+    background-color: var(--color-gi-yellow);
+    border: none;
+    padding: 6px 24px;
+    padding-left: .85em!important;
+}
+
+nav.submission-modes {
+    padding: .5em 0 1em 0;
+}
+
+table#p-quicklinks {
+    margin-top: .5em;
+    margin-right: 0;
+}
+
+.papmode img {
+    margin: 0;
+}
+
+.papmode.active {
+    background: var(--color-gi-blue);
+    color: var(--color-light);
+    border-radius: 0;
+
+    img {
+        bottom: 12px;
+    }
+
+    a {
+        color: var(--color-light);
+        font-weight: normal;
+        padding-top: .5em;
+        text-decoration: none;
+    }
+}
+
+.papmode .dim {
+    color: var(--color-grey-dark);
+}
+
+button, .btn {
+    border: none;
+    padding: .5em 1em;
+    border-radius: 0;
+
+    background: var(--color-grey);
+    color: var(--color-dark);
+
+    &:hover {
+        background: var(--color-grey-light);
+    }
+
+    &.btn-default, &.btn-primary {
+        background: var(--color-gi-blue);
+        color: var(--color-light);
+
+        &:hover {
+            background: var(--color-gi-blue-light);
+        }
+    }
+
+    &[name="cancel"], &.ml-2 {
+        background: var(--color-grey);
+        color: var(--color-dark);
+
+        &:hover {
+            background: var(--color-grey-light);
+        }
+    }
+
+    &#h-usermenubutton {
+        background: var(--color-grey);
+        color: var(--color-dark);
+        padding: 0;
+
+        &:hover {
+            background: var(--color-grey-light);
+        }
+    }
+}
+
+button {
+    border-radius: 0 !important;
+}
+
+.profile-dropmenu-summary {
+    margin: 0;
+}
+
+#p-body {
+    margin-left: 0!important;
+    margin-right: 0!important;
+}
+
+.home-sidebar {
+    background: var(--color-grey-light);
+    padding: 1em;
+    text-align: right;
+}
+
+h2, h3 {
+    font-weight: normal;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
+b {
+    font-weight: 500;
+}
+
+th.pl {
+    font-weight: 300;
+    min-width: 5ex;
+}
+
+.pl_revstat b {
+    font-weight: normal;
+}
+
+.pltable {
+    min-width: 100%;
+}
+
+.pstat, .pavfn {
+    font-weight: 500;
+}
+
+.pcontainer :not(h2, .cmtnumid) > a.qo {
+    background-color: var(--color-gi-blue);
+    color: var(--color-light)!important;
+    padding: .5em 1em;
+
+    span {
+        color: var(--color-light) !important;
+    }
+
+    img {
+        width: 1em;
+        bottom: -.15em;
+        margin-right: .5em;
+    }
+
+    &:hover {
+        background-color: var(--color-gi-blue-light);
+    }
+}
+
+nav.navbar {
+    background: var(--color-grey);
+    z-index: 999;
+
+    .container-fluid {
+        justify-content: space-between;
+
+        .profile-dropmenu-summary button {
+            color: var(--color-gi-blue) !important;
+            font-weight: 600;
+            background: none! important;
+            padding: .25em calc(.5 * var(--default-padding)) !important;
+
+            &:hover {
+                border: none !important;
+                background: var(--color-grey-dark) !important;
+                color: var(--color-light) !important;
+            }
+        }
+    }
+}
+
+.tll.active {
+    background-color: var(--color-gi-yellow);
+    border: 0;
+    border-radius: 0;
+}
+
+.tllx::before, .tll, .tllx::after {
+    border-top: 0;
+}
+
+.rev_num { font-size: 100%; }
+
+.cmtcard { border-top-color: var(--brand-decor-light); }
+
+.revcard-header-name,
+.cmtcard-header-name {
+    border-bottom: 0;
+    font-weight: 500;
+    color: var(--color-gi-blue);
+}
+
+.rfehead,
+.revrating-flag {
+    color: var(--color-gi-blue);
+}
+
+.revrating-choice button,
+.revrating-group button {
+    color: var(--color-gi-blue) !important;
+    border-color: var(--color-gi-blue) !important;
+    font-weight: 500 !important;
+
+    &:hover {
+        background: var(--color-gi-blue) !important;
+        color: var(--color-light) !important;
+    }
+}
+
+a img {
+    position: inherit!important;
+    bottom: 0!important;
+    margin-top: 0!important;
+}
+
+select {
+    background: none;
+    border: 1px solid var(--color-gi-blue);
+    padding: .5em 1em;
+    border-radius: 0;
+
+    &:hover {
+        background: var(--color-grey);
+    }
+}
+
+.tbtn { background: var(--color-gi-blue); color: var(--color-light); }
+
+.signingrp {
+    background: none;
+    border-radius: 0;
+}
+
+.btn-danger {
+    color: var(--color-light);
+
+    &:hover {
+        color: #b00000;
+    }
+}
+
+.btn-success {
+    border: none;
+    background: var(--color-gi-blue)!important;
+
+    &:hover {
+        background: var(--color-gi-blue-light)!important;
+    }
+}
+
+a:hover { text-decoration-color: inherit; color: #0a58ca; }
+
+.gi-logo { position: absolute!important;}
+
+nav>.container-fluid {
+    padding-left: 0!important;
+    padding-right: 0!important;
+}
+
+h1.leftmenu {
+    background: none!important;
+    padding-left: 0!important;
+
+    button:hover {
+        color: var(--color-gi-blue-light);
+        text-decoration-color: inherit;
+    }
+}
+
+.leftmenu-item.active {
+    background: var(--color-gi-blue);
+    color: var(--color-light);
+    font-weight: normal;
+    border: none;
+    border-radius: 0;
+}
+
+fieldset {
+    padding: 1em;
+
+    legend {
+        font-size: 100%!important;
+        font-weight: normal;
+    }
+
+    label {
+        text-align: left!important;
+    }
+}
+
+#h-right .dropmenu-container {
+    button {
+        background: none!important;
+        padding: unset!important;
+    }
+
+    li:hover {
+        color: var(--color-light)!important;
+    }
+
+    li.has-quiet-link {
+        cursor: default!important;
+        a {
+            cursor: default!important;
+        }
+        &:hover {
+            color: var(--color-gi-blue)!important;
+        }
+    }
+}
