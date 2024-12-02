@@ -1396,6 +1396,10 @@ class PaperList {
 
     /** @return string */
     function _paperLink(PaperInfo $row) {
+        if (!$this->user->can_view_paper($row)) {
+            return null;
+        }
+
         $pt = $this->_view_linkto ?? "paper";
         $pm = "";
         if ($pt === "finishreview") {

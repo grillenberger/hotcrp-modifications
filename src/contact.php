@@ -3103,8 +3103,12 @@ class Contact implements JsonSerializable {
                     || !$this->conf->check_track_view_sensitivity()
                     || $this->conf->check_tracks($prow, $this, Track::VIEW));
 
+            // check whether to show submission information to conflicted PC members
+            $pc_conflicted_showpaper = $this->conf->setting("pc_conflicted_showpaper");
+
             // check whether PC privileges apply
-            $allow_pc_broad = $allow_administer || $isPC;
+            $allow_pc_broad = $allow_administer
+                                || $isPC && ($ci->conflictType <= CONFLICT_MAXUNCONFLICTED || $pc_conflicted_showpaper);
             if ($allow_pc_broad) {
                 $cif |= PaperContactInfo::CIF_ALLOW_PC_BROAD;
             }

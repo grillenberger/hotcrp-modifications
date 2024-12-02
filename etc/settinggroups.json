@@ -124,7 +124,12 @@
         "print_function": "Submissions_SettingParser::print_pcseeallpdf",
         "settings": ["submitted_document_early_visibility"]
     },
-
+    {
+        "name": "submissions/pcconflictedshowpaper", "order": 60,
+        "print_function": "Submissions_SettingParser::print_pcconflictedshowpaper",
+        "title": "Visibility of conflicted papers",
+        "settings": ["pc_conflicted_showpaper"]
+    },
 
     {
         "name": "subform", "order": 400, "title": "Submission form",

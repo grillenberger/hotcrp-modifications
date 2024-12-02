@@ -40,6 +40,9 @@ class Submissions_SettingParser extends SettingParser {
             ],
             '<strong>Submission anonymity:</strong> Are author names hidden from reviewers?');
     }
+    static function print_pcconflictedshowpaper(SettingValues $sv) {
+        $sv->print_checkbox("pc_conflicted_showpaper", "PC members can see information on conflicted papers (except reviews)");
+    }
     static function print_pcseeall(SettingValues $sv) {
         $sv->print_checkbox("draft_submission_early_visibility", "PC can view incomplete submissions until submission deadline", [
             "hint" => "Check this box to collect review preferences before the submission deadline. After the submission deadline, PC members can only see completed submissions."

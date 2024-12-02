@@ -184,7 +184,12 @@ class Id_PaperColumn extends PaperColumn {
     }
     function content(PaperList $pl, PaperInfo $row) {
         $href = $pl->_paperLink($row);
-        return "<a href=\"{$href}\" class=\"pnum taghl\">#{$row->paperId}</a>";
+
+        if($href == null) {
+            return "#{$row->paperId}";
+        } else {
+            return "<a href=\"{$href}\" class=\"pnum taghl\">#{$row->paperId}</a>";
+        }
     }
     function text(PaperList $pl, PaperInfo $row) {
         return (string) $row->paperId;
@@ -282,6 +287,10 @@ class Title_PaperColumn extends PaperColumn {
         }
 
         $link = $pl->_paperLink($row);
+        if($link == null) {
+            return "[no access to this paper]";
+        }
+        
         $t = "<a href=\"{$link}\" class=\"ptitle taghl{$klass_extra}\">{$highlight_text}</a>";
         if ($this->want_pdf) {
             $t .= $pl->_contentDownload($row);

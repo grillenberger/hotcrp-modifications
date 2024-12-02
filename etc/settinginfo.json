@@ -38,6 +38,11 @@
         "json_values": ["if_reviewers_visible", "yes"]
     },
     {
+        "name": "pc_conflicted_showpaper", "storage": "pc_conflicted_showpaper",
+        "title": "Conflicted papers",
+        "type": "checkbox", "initial_value": 1
+    },
+    {
         "name": "comment_visibility_anonymous", "storage": "cmt_revid",
         "title": "Anonymous PC discussion",
         "type": "checkbox", "initial_value": 1, "json": "in"
