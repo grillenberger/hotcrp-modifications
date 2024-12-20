@@ -4954,15 +4954,15 @@ class Conf {
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <div class="container-fluid">
         END;
-        echo "<a class=\"nav-link\" href=\"/2025/?{$actas}\">home</a>";
-        echo "<a class=\"nav-link\" href=\"/2025/search.php?q=au:{$user_for_url}&t=all&{$actas}\">own submissions</a>";
+        echo "<a class=\"nav-link\" href=\"{$qreq->navigation()->siteurl_path()}?{$actas}\">home</a>";
+        echo "<a class=\"nav-link\" href=\"{$qreq->navigation()->siteurl_path()}search.php?q=au:{$user_for_url}&t=all&{$actas}\">own submissions</a>";
 
         if($user->isPC || $user->privChair)
-            echo "<a class=\"nav-link\" href=\"/2025/search.php?q=&t=all&{$actas}\">all submissions</a>";
+            echo "<a class=\"nav-link\" href=\"{$qreq->navigation()->siteurl_path()}search.php?q=&t=all&{$actas}\">all submissions</a>";
         
         for($i = 0; $i < count($this->_sub_rounds); $i++) {
             if($this->_sub_rounds[$i]->register == 0 || $this->_sub_rounds[$i]->register > time())
-                echo "<a class=\"nav-link\" href=\"/2025/paper.php/new?sclass={$this->_sub_rounds[$i]->tag}&{$actas}\">new <i>{$this->_sub_rounds[$i]->title1}</i> submission</a>";
+                echo "<a class=\"nav-link\" href=\"{$qreq->navigation()->siteurl_path()}paper.php/new?sclass={$this->_sub_rounds[$i]->tag}&{$actas}\">new <i>{$this->_sub_rounds[$i]->title1}</i> submission</a>";
         }
 
         echo <<<END
