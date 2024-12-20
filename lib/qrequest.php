@@ -650,7 +650,9 @@ class Qrequest implements ArrayAccess, IteratorAggregate, Countable, JsonSeriali
                 echo "<!-- Version ", HOTCRP_VERSION, " -->";
             }
         }
-        echo '</div>', Ht::unstash(), "</body>\n</html>\n";
+        echo '</div>', Ht::unstash();
+        echo '<script src="https://www.infos2025.ch/assets/lib/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>';
+        echo "</body>\n</html>\n";
     }
 
     static function print_footer_hook(Contact $user, Qrequest $qreq) {

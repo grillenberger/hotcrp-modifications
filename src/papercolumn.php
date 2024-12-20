@@ -183,6 +183,10 @@ class Id_PaperColumn extends PaperColumn {
         return $a->paperId <=> $b->paperId;
     }
     function content(PaperList $pl, PaperInfo $row) {
+        if(!$pl->user->privChair && $pl->conf->settings["pc_hideconflicted"] == 1 && $row->has_conflict($pl->user) && !$row->has_author($pl->user)) {
+            return "#{$row->paperId}";
+        }
+
         $href = $pl->_paperLink($row);
 
         if($href == null) {
@@ -622,6 +626,10 @@ class Abstract_PaperColumn extends PaperColumn {
         return $row->abstract() === "";
     }
     function content(PaperList $pl, PaperInfo $row) {
+        if($pl->conf->settings["pc_hideconflicted"] == 1 && $row->has_conflict($pl->user) && !$row->has_author($pl->user)) {
+            return "";
+        }
+        
         $ab = $row->abstract();
         $regex = $this->highlight ? $pl->search->field_highlighter("ab", $row->_search_group) : null;
         $t = Text::highlight($ab, $regex, $highlight_count);

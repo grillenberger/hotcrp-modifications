@@ -250,6 +250,9 @@ class Conf {
     const BLIND_ALWAYS = 2;
     const BLIND_UNTILREVIEW = 3;
 
+    const PC_HIDECONFLICTED_NO = 0;
+    const PC_HIDECONFLICTED_YES = 1;
+
     const SEEDEC_REV = 1;
     const SEEDEC_NCREV = 3;
 
@@ -391,6 +394,7 @@ class Conf {
         // enforce invariants
         $this->settings["sub_blind"] = $this->settings["sub_blind"] ?? self::BLIND_ALWAYS;
         $this->settings["rev_blind"] = $this->settings["rev_blind"] ?? self::BLIND_ALWAYS;
+        $this->settings["pc_hideconflicted"] = $this->settings["pc_hideconflicted"] ?? self::PC_HIDECONFLICTED_NO;
 
         // permission bits
         $this->_permbits = 0;
@@ -4555,6 +4559,22 @@ class Conf {
         echo "<!DOCTYPE html>\n<html lang=\"{$this->lang}\">\n<head>\n",
             "<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n";
 
+        echo <<<END
+            <link href="https://www.infos2025.ch/assets/lib/bootstrap-5.1.3-dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+            <link href="https://www.infos2025.ch/assets/lib/bootstrap-icons-1.11.3/font/bootstrap-icons.css" rel="stylesheet" crossorigin="anonymous">
+            <link href="https://www.infos2025.ch/assets/lib/leaflet/leaflet.css" rel="stylesheet">
+            <link href="https://www.infos2025.ch/assets/fonts/fonts.css" rel="stylesheet">
+            <script src="https://www.infos2025.ch/assets/lib/jquery-3.7.1.min-3.js" crossorigin="anonymous"></script>
+            <link rel="apple-touch-icon" sizes="180x180" href="https://www.infos2025.ch/assets/favicon/apple-touch-icon.png">
+            <link rel="icon" type="image/png" sizes="32x32" href="https://www.infos2025.ch/assets/favicon/favicon-32x32.png">
+            <link rel="icon" type="image/png" sizes="16x16" href="https://www.infos2025.ch/assets/favicon/favicon-16x16.png">
+            <link rel="manifest" href="https://www.infos2025.ch/assets/favicon/site.webmanifest">
+            <link rel="mask-icon" href="https://www.infos2025.ch/assets/favicon/safari-pinned-tab.svg" color="#0e2050">
+            <meta name="apple-mobile-web-app-title" content="INFOS'25">
+            <meta name="application-name" content="INFOS'25">
+            <meta name="msapplication-TileColor" content="#fae100">
+            <meta name="theme-color" content="#0e2050">
+        END;
         // gather stylesheets
         $cssx = [];
         $has_default_css = $has_media = false;
@@ -4883,16 +4903,16 @@ class Conf {
     /** @param Qrequest $qreq
      * @param string|list<string> $title */
     private function print_body_header($qreq, $title, $id, $extra) {
-        if ($id === "home" || ($extra["hide_title"] ?? false)) {
-            echo '<div id="h-site" class="header-site-home">',
-                '<h1><a class="q" href="', $this->hoturl("index", ["cap" => null]),
-                '">', htmlspecialchars($this->short_name), '</a></h1></div>';
-        } else {
-            echo '<div id="h-site" class="header-site-page">',
-                '<a class="q" href="', $this->hoturl("index", ["cap" => null]),
-                '"><span class="header-site-name">', htmlspecialchars($this->short_name),
-                '</span></a></div>';
-        }
+        // if ($id === "home" || ($extra["hide_title"] ?? false)) {
+        //     echo '<div id="h-site" class="header-site-home">',
+        //         '<h1><a class="q" href="', $this->hoturl("index", ["cap" => null]),
+        //         '">', htmlspecialchars($this->short_name), '</a></h1></div>';
+        // } else {
+        //     echo '<div id="h-site" class="header-site-page">',
+        //         '<a class="q" href="', $this->hoturl("index", ["cap" => null]),
+        //         '"><span class="header-site-name">', htmlspecialchars($this->short_name),
+        //         '</span></a></div>';
+        // }
 
         echo '<div id="h-right">';
         if (($user = $qreq->user()) && !$user->is_empty()) {
@@ -4924,6 +4944,7 @@ class Conf {
             echo ' id="t-', $id, '"';
         }
         $class = $extra["body_class"] ?? "";
+        $class .= " wrapper";
         $this->_mx_auto = strpos($class, "error") !== false;
         if (($list = $qreq->active_list())) {
             $class = $class === "" ? "has-hotlist" : "{$class} has-hotlist";
@@ -4938,7 +4959,46 @@ class Conf {
         if (($x = $this->opt["uploadMaxFilesize"] ?? null) !== null) {
             echo ' data-document-max-size="', ini_get_bytes(null, $x), '"';
         }
-        echo '><div id="p-page" class="need-banner-offset"><div id="p-header">';
+        echo '>';
+
+        $user_for_url = urlencode("\"".$user->email."\"");
+        $actas = "";
+        if(array_key_exists("actas", $_REQUEST))
+            $actas = "actas=" . $_REQUEST["actas"];
+
+        echo <<<END
+            <div id="p-page" class="need-banner-offset">
+                <div class="top">
+                    <div id="p-header" class="header">';
+                        <div class="title-box">
+                            <p class="sitetitle">INFOS 2025</p>
+                            <p class="subtitle">Conference Management</p>
+                        </div>
+                        <a href="https://fa-ibs.gi.de">
+                            <img class="gi-logo" src="https://www.infos2025.ch/assets/img/gi-faibs.svg" alt="Logo der Gesellschaft für Informatik, Fachausschuss Informatische Bildung in Schulen">
+                        </a>
+                    </div>
+
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <div class="container-fluid">
+        END;
+        echo "<a class=\"nav-link\" href=\"/2025/?{$actas}\">home</a>";
+        echo "<a class=\"nav-link\" href=\"/2025/search.php?q=au:{$user_for_url}&t=all&{$actas}\">own submissions</a>";
+
+        if($user->isPC || $user->privChair)
+            echo "<a class=\"nav-link\" href=\"/2025/search.php?q=&t=all&{$actas}\">all submissions</a>";
+        
+        for($i = 0; $i < count($this->_sub_rounds); $i++) {
+            if($this->_sub_rounds[$i]->register == 0 || $this->_sub_rounds[$i]->register > time())
+                echo "<a class=\"nav-link\" href=\"/2025/paper.php/new?sclass={$this->_sub_rounds[$i]->tag}&{$actas}\">new <i>{$this->_sub_rounds[$i]->title1}</i> submission</a>";
+        }
+
+        echo <<<END
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        END;
 
         // initial load (JS's timezone offsets are negative of PHP's)
         Ht::stash_script("hotcrp.onload.time(" . (-(int) date("Z", Conf::$now) / 60) . "," . ($this->opt("time24hour") ? 1 : 0) . ")");
