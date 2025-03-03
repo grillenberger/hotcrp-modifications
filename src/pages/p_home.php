@@ -420,7 +420,7 @@ class Home_Page {
             $sep = $xsep;
         }
         if ($user->isPC && $conf->timePCReviewPreferences()) {
-            echo $sep, '<a href="', $conf->hoturl("reviewprefs"), '">Review preferences</a>';
+            echo $sep, '<a class="highlight" href="', $conf->hoturl("reviewprefs"), '">Review preferences</a>';
             $sep = $xsep;
         }
         if ($conf->setting("rev_tokens")) {
