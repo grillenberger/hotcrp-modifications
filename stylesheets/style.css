@@ -19,6 +19,13 @@ body {
 	--submission-bg: #e2e9ec;
 	--submission-sidebar-bg: #edf3f5;
 }
+
+.highlight {
+	background-color: var(--color-gi-yellow);
+	padding: 2px 5px;
+	border: 2px solid var(--color-gi-blue);
+}
+	
 select, button {
 	color: #222222;
 }
