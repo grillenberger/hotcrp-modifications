@@ -4983,6 +4983,7 @@ class Conf {
                         <div class="container-fluid">
         END;
         echo "<a class=\"nav-link\" href=\"{$qreq->navigation()->siteurl_path()}?{$actas}\">home</a>";
+	echo "<a class=\"nav-link\" href=\"https://www.infos2025.ch\">conference website</a>";
         echo "<a class=\"nav-link\" href=\"{$qreq->navigation()->siteurl_path()}search.php?q=au:{$user_for_url}&t=all&{$actas}\">own submissions</a>";
 
         if($user->isPC || $user->privChair)
