@@ -5063,6 +5063,7 @@ a.help {
 	left: 0;
 	right: 0;
 	z-index: 14;
+	display: block;
 }
 .modal.transparent {
 	background-color: transparent;
